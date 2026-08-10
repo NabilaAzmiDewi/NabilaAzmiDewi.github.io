@@ -22,7 +22,3 @@ The website is built with plain HTML, CSS, and JavaScript. It does not require a
 #### Home
 - Add more capabilities (Interior Consultant) ⏳
 - 
-
-#### Contacts
-- LinkedIn ✅
-- 
