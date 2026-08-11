@@ -2,6 +2,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "villa-nyanyi",
     "title": "Villa Nyanyi",
+    "location": "Villa Nyanyi, Bali, Indonesia",
+    "mapsUrl": "https://maps.app.goo.gl/aWbyty4sxQVboLPy9",
     "category": "Villa",
     "style": "Rustic Japanese",
     "description": "Villa Nyanyi blends rustic natural elements with Japanese simplicity. Natural wood, stone, and restrained detailing create a tranquil setting designed for rest and connection with the surrounding landscape.",
@@ -16,6 +18,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "villa-buwit",
     "title": "Villa Buwit",
+    "location": "",
+    "mapsUrl": "",
     "category": "Villa",
     "style": "Rustic Modern · Tropical · Mediterranean",
     "description": "Villa Buwit combines rustic modern, tropical, and Mediterranean influences. Wood, stone, clean geometry, and a relaxed material palette create a warm home that sits comfortably within its natural setting.",
@@ -30,6 +34,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "villa-seraya",
     "title": "Villa Seraya",
+    "location": "",
+    "mapsUrl": "",
     "category": "Villa",
     "style": "Contemporary Mediterranean",
     "description": "A contemporary Mediterranean villa with tropical influences, defined by clean white architecture, blue arched openings, warm wood accents, and lush planting. The result is airy, serene, and resort-like.",
@@ -44,6 +50,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "seminyak-townhouse",
     "title": "Seminyak Townhouse",
+    "location": "",
+    "mapsUrl": "",
     "category": "Villa",
     "style": "Modern Tropical · Ethnic",
     "description": "A resort-sanctuary concept that pairs modern tropical planning with ethnic accents. Rich wood, warm ambient light, local patterns, and large glass doors create a comfortable retreat connected to a lush green wall.",
@@ -58,6 +66,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "villa-shisho",
     "title": "Villa Shisho",
+    "location": "",
+    "mapsUrl": "",
     "category": "Villa",
     "style": "Mediterranean · Scandinavian · Tropical",
     "description": "A warm and airy interior combining contemporary Mediterranean forms with Scandinavian restraint and tropical texture. Soft neutrals, natural wood, woven details, and arched niches create a refined boutique-resort atmosphere.",
@@ -72,6 +82,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "villa-lombok",
     "title": "Villa Lombok",
+    "location": "",
+    "mapsUrl": "",
     "category": "Villa",
     "style": "Warm Contemporary · Lombok-inspired",
     "description": "A warm contemporary villa that combines Mediterranean forms with Lombok-inspired craft. Textured beige walls, arches, rattan, traditional textiles, and efficient planning make the compact spaces feel calm and generous.",
@@ -86,6 +98,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "villa-nusa-dua",
     "title": "Villa Nusa Dua",
+    "location": "",
+    "mapsUrl": "",
     "category": "Villa",
     "style": "Contemporary Tropical",
     "description": "A contemporary tropical villa featuring textured neutrals, arched details, natural wood, rattan, and soft ambient lighting. The open living zone connects naturally to the private pool, while the bedroom feels intimate and handcrafted.",
@@ -100,6 +114,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "villa-jimbaran",
     "title": "Villa Jimbaran",
+    "location": "",
+    "mapsUrl": "",
     "category": "Villa",
     "style": "Warm Contemporary",
     "description": "A warm contemporary villa using natural wood, rattan, textured stone, greenery, and soft neutrals. Integrated cabinetry, layered lighting, accessible planning, and broad openings balance resort comfort with everyday practicality.",
@@ -114,6 +130,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "baiq-market-office",
     "title": "Baiq Market Office",
+    "location": "",
+    "mapsUrl": "",
     "category": "Office",
     "style": "Contemporary Industrial",
     "description": "A contemporary industrial workplace designed for collaboration, focus, and comfort. Exposed concrete, brick screens, black metal, warm wood, and integrated greenery define flexible workstations, meeting areas, and a relaxed lounge.",
@@ -127,6 +145,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "baiq-market-office-2",
     "title": "Baiq Market Office 2",
+    "location": "",
+    "mapsUrl": "",
     "category": "Office",
     "style": "Modern Office",
     "description": "A modern office environment that organizes open workstations, meeting spaces, and support areas within a strong architectural framework. Linear lighting, dark metal, brick, wood, and concrete create a focused but welcoming atmosphere.",
@@ -141,6 +161,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "spbe-bali-office",
     "title": "SPBE Bali Office",
+    "location": "",
+    "mapsUrl": "",
     "category": "Office",
     "style": "Japanese-inspired Contemporary",
     "description": "A calm Japanese-inspired office for reception, meetings, and daily operations. Light wood, soft neutrals, translucent partitions, integrated storage, curved forms, and panoramic glazing create order, openness, and functional privacy.",
@@ -155,6 +177,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "polda-bali-office",
     "title": "Polda Bali Office",
+    "location": "",
+    "mapsUrl": "",
     "category": "Office",
     "style": "Contemporary Executive",
     "description": "A contemporary administrative and executive interior using light wood, white surfaces, marble accents, and recessed lighting. Private offices, computer workstations, lounges, and a formal meeting room support an organized and authoritative workplace.",
@@ -169,6 +193,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "integrity-bali-office",
     "title": "Integrity Bali Office",
+    "location": "",
+    "mapsUrl": "",
     "category": "Office",
     "style": "Compact Contemporary",
     "description": "A compact office that efficiently combines reception, workstations, storage, and a shared pantry-discussion area. Light wood, slatted panels, neutral furniture, integrated shelving, and warm light create a professional, welcoming setting.",
@@ -183,6 +209,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "buluh-indah-bali",
     "title": "Buluh Indah Bali",
+    "location": "",
+    "mapsUrl": "",
     "category": "Residential",
     "style": "Warm Contemporary",
     "description": "A warm contemporary home combining natural wood, rattan, terracotta accents, and handcrafted décor. Integrated storage, multifunctional furniture, and soft neutrals make the compact living and bedroom spaces practical and inviting.",
@@ -197,6 +225,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "the-wings-bali",
     "title": "The Wings Bali",
+    "location": "",
+    "mapsUrl": "",
     "category": "Residential",
     "style": "Contemporary",
     "description": "A contemporary residence with warm wood, soft neutrals, marble details, and refined lighting. Integrated storage, a geometric green feature wall, and the private pool build a clear indoor-outdoor relationship.",
@@ -211,6 +241,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "mr-s-house-bali",
     "title": "Mr. S House Bali",
+    "location": "",
+    "mapsUrl": "",
     "category": "Residential",
     "style": "Warm Contemporary Tropical",
     "description": "A relaxed residential interior that combines wood, rattan, patterned textiles, and soft neutrals. Open shared areas, built-in storage, integrated workspaces, and a dedicated office respond to practical daily life.",
@@ -225,6 +257,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "the-rooms-apartment",
     "title": "The Rooms Apartment",
+    "location": "Denpasar, Bali, Indonesia",
+    "mapsUrl": "https://maps.app.goo.gl/XAsiVUy3bkg6kpHN7",
     "category": "Residential",
     "style": "Contemporary Apartment",
     "description": "A contemporary apartment balancing comfort, functionality, and visual calm. Warm wood, neutral finishes, concealed lighting, and integrated cabinetry organize sleeping, lounge, dining, and kitchenette functions into one coherent interior.",
@@ -239,6 +273,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "cozy-stay-apartment",
     "title": "Cozy Stay Apartment Bali",
+    "location": "Bali, Indonesia",
+    "mapsUrl": "https://maps.google.com/",
     "category": "Residential",
     "style": "Compact Contemporary",
     "description": "A compact apartment interior with coordinated sleeping, lounge, storage, and entertainment zones. Light wood, soft neutrals, integrated cabinetry, and warm lighting create an efficient and welcoming everyday space.",
@@ -253,6 +289,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "freelance-residential",
     "title": "Freelance Residential Work",
+    "location": "",
+    "mapsUrl": "",
     "category": "Residential",
     "style": "Selected work since 2020",
     "description": "A selection of freelance residential projects developed since 2020. The work demonstrates design development, space planning, material selection, technical consideration, and the ability to respond to varied client needs and site conditions.",
@@ -271,6 +309,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "sister-anne-cafe",
     "title": "Sister Anne Cafe Bali",
+    "location": "Bali, Indonesia",
+    "mapsUrl": "https://maps.app.goo.gl/yPAfLhQMJP8cFyoR9",
     "category": "Hospitality",
     "style": "Minimalist Tropical",
     "description": "A café concept blending minimalist and tropical styles with traditional details. Rustic wood, stone, natural textures, and an open composition create understated luxury while keeping the atmosphere relaxed and approachable.",
@@ -285,6 +325,8 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "danu-bar-resto",
     "title": "Danu Bar & Resto",
+    "location": "Bali, Indonesia",
+    "mapsUrl": "https://maps.app.goo.gl/Me5bv4EDoBU72S7E8",
     "category": "Hospitality",
     "style": "Cultural Maximalist",
     "description": "A cultural maximalist restaurant that combines Japanese, Chinese, and Indonesian references. Bold patterns, warm earthy materials, wood, and layered decorative details create an immersive and character-rich dining atmosphere.",
@@ -299,6 +341,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "restaurant-tropical-vibes",
     "title": "Restaurant Tropical Vibes",
+    "location": "",
     "category": "Hospitality",
     "style": "Tropical Café",
     "description": "A lively tropical restaurant designed for both work and brunch. Comfortable seating, natural materials, warm light, and a calm spatial rhythm support long visits, social dining, and productive daytime use.",
@@ -312,6 +355,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "red-dakoci-bali",
     "title": "Red Dakoci Bali",
+    "location": "Bali, Indonesia",
     "category": "Hospitality",
     "style": "Bold Asian-inspired",
     "description": "A vibrant restaurant interior with deep red accents, geometric ceiling structures, lantern-style lighting, murals, and timber finishes. Flexible table configurations and balanced neutral elements make the space energetic yet comfortable.",
@@ -326,6 +370,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "baiq-market-cafe",
     "title": "Baiq Market Cafe",
+    "location": "",
     "category": "Hospitality",
     "style": "Modern Industrial",
     "description": "A modern industrial café using dark textured walls, black framing, linear illumination, and large glass panels. Warm wood and varied seating soften the urban material palette and support dining, socializing, and working.",
@@ -339,6 +384,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "baiq-market-juice-bar",
     "title": "Baiq Market Juice Bar",
+    "location": "",
     "category": "Hospitality",
     "style": "Pastel Coastal",
     "description": "A playful pastel coastal juice bar combining coral tones, textured white walls, patterned floors, turquoise accents, rounded counters, and arched details. Natural light and greenery reinforce the bright, fresh identity.",
@@ -352,6 +398,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "yangs-franchise",
     "title": "Yang’s Franchise",
+    "location": "",
     "category": "Hospitality",
     "style": "Franchise Rollout · 10 outlets",
     "description": "Ten franchise outlets developed in line with Yang’s headquarters design standards. Each location translates the established brand identity into practical layouts, consistent finishes, customer flow, and operational requirements.",
@@ -369,6 +416,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "booth-exhibition-design",
     "title": "Booth & Exhibition Design",
+    "location": "",
     "category": "Other",
     "style": "Commercial Concepts",
     "description": "A collection of compact commercial concepts including exhibition booths, retail kiosks, and container-based stores. Each design prioritizes efficient planning, clear brand identity, customer flow, accessibility, display needs, and practical materials.",
@@ -386,6 +434,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "loi-spa-bali",
     "title": "LOI Spa Bali",
+    "location": "Bali, Indonesia",
     "category": "Other",
     "style": "Japanese-inspired Wellness",
     "description": "A Japanese-inspired spa interior designed as a calm journey from reception to treatment. Natural wood, textured stone, timber screens, concealed lighting, and softly separated treatment zones support comfort, privacy, and smooth circulation.",
@@ -400,6 +449,7 @@ window.PORTFOLIO_PROJECTS = [
   {
     "slug": "gms-church-tabanan",
     "title": "GMS Church Tabanan",
+    "location": "Tabanan, Bali, Indonesia",
     "category": "Other",
     "style": "Volunteer Project",
     "description": "A volunteer interior design concept for the church lobby and main auditorium. The proposal considers circulation, seating, lighting, worship functions, and community events, applying professional design skills to a meaningful public space.",

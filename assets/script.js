@@ -60,6 +60,15 @@ function createProjectCard(project) {
     ? '<span class="placeholder-badge">Editable template</span>'
     : "";
 
+  const locationMarkup = project.location
+    ? `
+        <div class="project-location">
+          <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+          <span>${project.location}</span>
+        </div>
+      `
+    : "";
+
   return `
     <article
       class="project-card reveal visible${placeholderClass}"
@@ -83,6 +92,7 @@ function createProjectCard(project) {
           ${placeholderBadge}
         </div>
         <h3>${project.title}</h3>
+        ${locationMarkup}
         <p>${project.description}</p>
         <div class="view-link">View project →</div>
       </div>
@@ -101,6 +111,7 @@ function renderProjects() {
 
     const searchableText = [
       project.title,
+      project.location || "",
       project.category,
       project.style,
       project.description,
@@ -173,7 +184,6 @@ function renderCategoryFilters() {
 }
 
 const projectSearch = select("#projectSearch");
-
 if (projectSearch) {
   projectSearch.addEventListener("input", (event) => {
     searchQuery = event.target.value;
@@ -225,7 +235,6 @@ function openProject(slug) {
   }
 
   activeProjectIndex = projects.findIndex((project) => project.slug === slug);
-
   if (activeProjectIndex < 0) return;
 
   fillProjectDialog(projects[activeProjectIndex]);
@@ -236,7 +245,6 @@ function openProject(slug) {
 
 function setActiveDialogImage(index) {
   const project = projects[activeProjectIndex];
-
   if (!project || !project.images.length) return;
 
   // Wrap around so scrolling past the final image returns to the first.
@@ -244,7 +252,6 @@ function setActiveDialogImage(index) {
     (index + project.images.length) % project.images.length;
 
   const mainImage = select("#dialogImage");
-
   mainImage.src = project.images[activeImageIndex];
   mainImage.alt =
     `${project.title} — project image ${activeImageIndex + 1} of ` +
@@ -255,13 +262,11 @@ function setActiveDialogImage(index) {
 
   thumbnails.forEach((thumbnail, thumbnailIndex) => {
     const isActive = thumbnailIndex === activeImageIndex;
-
     thumbnail.classList.toggle("active", isActive);
     thumbnail.setAttribute("aria-current", isActive ? "true" : "false");
   });
 
   const activeThumbnail = thumbnails[activeImageIndex];
-
   if (activeThumbnail && projectDialog?.open) {
     activeThumbnail.scrollIntoView({
       behavior: "smooth",
@@ -277,8 +282,28 @@ function fillProjectDialog(project) {
   select("#dialogStyle").textContent = project.style;
   select("#dialogDescription").textContent = project.description;
 
-  const thumbnailContainer = select("#dialogThumbs");
+  const dialogLocation = select("#dialogLocation");
 
+if (dialogLocation) {
+  const locationText = select("span", dialogLocation);
+
+  if (project.location) {
+    const mapsUrl =
+      project.mapsUrl ||
+      "https://www.google.com/maps/search/?api=1&query=" +
+        encodeURIComponent(project.location);
+
+    locationText.textContent = project.location;
+    dialogLocation.href = mapsUrl;
+    dialogLocation.hidden = false;
+  } else {
+    locationText.textContent = "";
+    dialogLocation.removeAttribute("href");
+    dialogLocation.hidden = true;
+  }
+}
+
+  const thumbnailContainer = select("#dialogThumbs");
   thumbnailContainer.innerHTML = project.images
     .map(
       (source, index) => `
@@ -325,7 +350,6 @@ if (projectDialog) {
   // A cooldown prevents high-resolution mouse wheels and touchpads from
   // skipping several images from one small gesture.
   const dialogGallery = select(".dialog-gallery", projectDialog);
-
   let wheelAccumulator = 0;
   let wheelIsCoolingDown = false;
   let wheelCooldownTimer;
@@ -335,7 +359,6 @@ if (projectDialog) {
       "wheel",
       (event) => {
         const project = projects[activeProjectIndex];
-
         if (!projectDialog.open || !project) return;
 
         // The gallery owns the wheel while the pointer is over the image area.
@@ -356,14 +379,12 @@ if (projectDialog) {
         if (wheelIsCoolingDown || Math.abs(wheelAccumulator) < 35) return;
 
         const direction = wheelAccumulator > 0 ? 1 : -1;
-
         wheelAccumulator = 0;
         wheelIsCoolingDown = true;
 
         setActiveDialogImage(activeImageIndex + direction);
 
         window.clearTimeout(wheelCooldownTimer);
-
         wheelCooldownTimer = window.setTimeout(() => {
           wheelIsCoolingDown = false;
         }, 240);
@@ -410,9 +431,7 @@ if (projectDialog) {
   select("#prevProject").addEventListener("click", () => {
     activeProjectIndex =
       (activeProjectIndex - 1 + projects.length) % projects.length;
-
     fillProjectDialog(projects[activeProjectIndex]);
-
     history.replaceState(
       null,
       "",
@@ -422,9 +441,7 @@ if (projectDialog) {
 
   select("#nextProject").addEventListener("click", () => {
     activeProjectIndex = (activeProjectIndex + 1) % projects.length;
-
     fillProjectDialog(projects[activeProjectIndex]);
-
     history.replaceState(
       null,
       "",
@@ -439,6 +456,7 @@ if (projectDialog) {
     });
   }
 }
+
 
 /* --------------------------------------------------------------------------
    Keep presentation text read-only
