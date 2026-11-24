@@ -161,6 +161,21 @@
      </div>
     </model-viewer>
     <nav aria-label="Choose a room" class="room-picker" id="roomPicker"></nav>
+    <div class="drone-toggle"><button class="model-reset" id="toggleDrone" type="button" aria-pressed="false">Drone mode</button></div>
+    <div class="drone-help" id="droneHelp" hidden>
+     <strong>Drone mode</strong>
+     <span>WASD · Move &nbsp; Q / E · Down / up &nbsp; Shift · Faster</span>
+     <span>Drag to look · Arrow keys to turn · Esc to exit</span>
+     <small>Free flight passes through walls.</small>
+     <div class="drone-pad" aria-label="Drone movement">
+      <button type="button" data-flight="KeyW" aria-label="Fly forward">↑</button>
+      <button type="button" data-flight="KeyA" aria-label="Fly left">←</button>
+      <button type="button" data-flight="KeyS" aria-label="Fly backward">↓</button>
+      <button type="button" data-flight="KeyD" aria-label="Fly right">→</button>
+      <button type="button" data-flight="KeyQ" aria-label="Fly down">Down</button>
+      <button type="button" data-flight="KeyE" aria-label="Fly up">Up</button>
+     </div>
+    </div>
     <aside aria-labelledby="roomTitle" class="room-info" id="roomInfo" hidden>
      <span class="room-eyebrow">Room tour</span>
      <h3 id="roomTitle"></h3>
@@ -246,6 +261,7 @@
   </script>
   <script src="/assets/script.js">
   </script>
+  <script src="/assets/drone.js"></script>
  </body>
 </html>
 

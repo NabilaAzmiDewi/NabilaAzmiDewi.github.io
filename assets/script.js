@@ -385,6 +385,7 @@ const focusedModel = select("#focusedModel");
 
 function resetRoomTour() {
   if (!focusedModel) return;
+  window.portfolioDrone?.stop();
   select("#roomInfo").hidden = true;
   modelDialog.classList.remove("room-selected");
   selectAll("[data-room]").forEach((button) => button.setAttribute("aria-pressed", "false"));
@@ -400,6 +401,7 @@ function buildRoomTour(project) {
   picker.hidden = !project.rooms?.length;
   (project.rooms || []).forEach((room, index) => {
     const visitRoom = () => {
+      window.portfolioDrone?.stop();
       focusedModel.setAttribute("camera-target", room.target);
       focusedModel.setAttribute("camera-orbit", room.orbit);
       focusedModel.setAttribute("field-of-view", "65deg");

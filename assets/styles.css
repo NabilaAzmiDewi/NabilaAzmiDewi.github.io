@@ -936,8 +936,31 @@ body.dialog-open {
 .room-info p { color: var(--muted); font-size: .85rem; line-height: 1.6; }
 .room-info img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; margin: 14px 0; }
 .room-info .model-reset { width: 100%; justify-content: center; padding: 0 8px; }
+.drone-toggle { position: absolute; right: 90px; top: 29px; z-index: 5; }
+.drone-toggle button:disabled { opacity: .5; cursor: wait; }
+.drone-help {
+  position: absolute; z-index: 4; left: 50%; bottom: 24px;
+  transform: translateX(-50%); display: grid; gap: 7px;
+  width: max-content; max-width: calc(100% - 28px); padding: 18px;
+  border-radius: 20px; color: #241916; background: rgba(255,253,249,.94);
+  box-shadow: 0 15px 45px rgba(46,31,26,.2); text-align: center; font-size: .8rem;
+}
+.drone-help[hidden] { display: none; }
+.drone-help small { color: var(--muted); }
+.drone-pad { display: flex; justify-content: center; gap: 5px; }
+.drone-pad button { border: 1px solid var(--line); border-radius: 9px; padding: 10px 14px; background: white; color: var(--accent); font-weight: 800; touch-action: none; }
+.drone-pad button:active { background: var(--accent); color: white; }
+.drone-active .room-picker, .drone-active .room-hotspot, .drone-active .model-controls { display: none; }
+.drone-active model-viewer { touch-action: none; cursor: crosshair; }
+@media(max-width:700px) {
+  .drone-toggle { top: 106px; right: 16px; }
+  .drone-active .drone-toggle { top: 106px; }
+  .drone-help { font-size: .7rem; width: calc(100% - 28px); }
+  .drone-pad button { padding: 10px 12px; }
+}
 @media(max-width:700px) {
   .room-picker { top: 104px; left: 14px; right: 14px; display: flex; overflow-x: auto; padding-bottom: 6px; }
+  .model-stage .room-picker { top: 164px; }
   .room-picker button { white-space: nowrap; font-size: .7rem; padding: 9px 12px; }
   .room-info { top: auto; bottom: 145px; right: 14px; left: 14px; width: auto; max-height: 31%; padding: 14px; }
   .room-info img { display: none; }
