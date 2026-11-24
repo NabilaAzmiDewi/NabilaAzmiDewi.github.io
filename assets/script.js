@@ -53,7 +53,6 @@ let searchQuery = "";
 let visibleProjects = [...projects];
 let activeProjectIndex = 0;
 let activeImageIndex = 0;
-let activeDialogView = "image";
 
 function createProjectCard(project) {
   const placeholderClass = project.placeholder ? " placeholder-card" : "";
@@ -257,12 +256,6 @@ function setActiveDialogImage(index) {
     (index + project.images.length) % project.images.length;
 
   const mainImage = select("#dialogImage");
-  const mainContainer = select(".dialog-main", projectDialog);
-  const modelViewer = select("#dialogModel");
-  activeDialogView = "image";
-  mainContainer?.classList.remove("is-model-view");
-  mainImage.hidden = false;
-  if (modelViewer) modelViewer.hidden = true;
   mainImage.src = project.images[activeImageIndex];
   mainImage.alt =
     `${project.title} — project image ${activeImageIndex + 1} of ` +
@@ -295,17 +288,12 @@ function setActiveDialogImage(index) {
 
 function showDialogModel() {
   const project = projects[activeProjectIndex];
-  const mainImage = select("#dialogImage");
-  const mainContainer = select(".dialog-main", projectDialog);
-  const modelViewer = select("#dialogModel");
-  const thumbnailContainer = select("#dialogThumbs");
+  const modelDialog = select("#modelDialog");
+  const modelViewer = select("#focusedModel");
 
-  if (!project?.model || !modelViewer) return;
+  if (!project?.model || !modelDialog || !modelViewer) return;
 
-  activeDialogView = "model";
-  mainImage.hidden = true;
-  mainContainer?.classList.add("is-model-view");
-  modelViewer.hidden = false;
+  select("#modelDialogTitle").textContent = project.title;
 
   // Assign the large model only when requested, so normal gallery browsing
   // stays quick and bandwidth-friendly.
@@ -313,12 +301,7 @@ function showDialogModel() {
     modelViewer.setAttribute("src", project.model);
   }
   modelViewer.setAttribute("alt", `Interactive 3D model of ${project.title}`);
-
-  selectAll(".thumb", thumbnailContainer).forEach((thumbnail) => {
-    const isActive = thumbnail.classList.contains("thumb-model");
-    thumbnail.classList.toggle("active", isActive);
-    thumbnail.setAttribute("aria-current", isActive ? "true" : "false");
-  });
+  modelDialog.showModal();
 }
 
 function fillProjectDialog(project) {
@@ -391,14 +374,30 @@ if (dialogLocation) {
     });
   });
 
-  const modelViewer = select("#dialogModel");
-  if (modelViewer) {
-    modelViewer.hidden = true;
-    modelViewer.removeAttribute("src");
-  }
-
   activeImageIndex = 0;
   setActiveDialogImage(0);
+}
+
+const modelDialog = select("#modelDialog");
+const focusedModel = select("#focusedModel");
+
+if (modelDialog && focusedModel) {
+  select("#closeModelDialog").addEventListener("click", () => {
+    modelDialog.close();
+  });
+
+  modelDialog.addEventListener("click", (event) => {
+    if (event.target === modelDialog) {
+      modelDialog.close();
+    }
+  });
+
+  select("#resetModelView").addEventListener("click", () => {
+    focusedModel.setAttribute("camera-orbit", "35deg 70deg auto");
+    focusedModel.setAttribute("camera-target", "auto auto auto");
+    focusedModel.setAttribute("field-of-view", "28deg");
+    focusedModel.jumpCameraToGoal?.();
+  });
 }
 
 if (projectDialog) {
@@ -431,9 +430,6 @@ if (projectDialog) {
       (event) => {
         const project = projects[activeProjectIndex];
         if (!projectDialog.open || !project) return;
-
-        // Preserve native orbit and zoom gestures in the interactive viewer.
-        if (activeDialogView === "model") return;
 
         // The gallery owns the wheel while the pointer is over the image area.
         // It must never pass through to the page behind the modal.

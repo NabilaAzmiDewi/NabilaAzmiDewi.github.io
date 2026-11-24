@@ -87,24 +87,6 @@
     <div class="dialog-gallery">
      <div class="dialog-main">
       <img alt="" id="dialogImage"/>
-      <model-viewer
-       alt="Interactive 3D model of Villa Seraya"
-       camera-controls
-       environment-image="neutral"
-       id="dialogModel"
-       interaction-prompt="auto"
-       loading="lazy"
-       poster="/assets/images/villa-seraya-01.webp"
-       shadow-intensity="1"
-       tone-mapping="neutral"
-       touch-action="pan-y"
-       hidden
-      >
-       <div class="model-loading" slot="poster">
-        <strong>Interactive 3D</strong>
-        <span>Loading Villa Seraya…</span>
-       </div>
-      </model-viewer>
      </div>
      <div class="thumbs" id="dialogThumbs">
      </div>
@@ -137,6 +119,68 @@
        →
       </button>
      </div>
+    </div>
+   </div>
+  </dialog>
+  <dialog aria-labelledby="modelDialogTitle" class="model-dialog" id="modelDialog">
+   <div class="model-stage">
+    <div class="model-dialog-heading">
+     <span>
+      Interactive 3D
+     </span>
+     <h2 id="modelDialogTitle">
+      Villa Seraya
+     </h2>
+    </div>
+    <button aria-label="Close interactive 3D viewer" class="model-dialog-close" id="closeModelDialog" type="button">
+     ×
+    </button>
+    <model-viewer
+     alt="Interactive 3D model of Villa Seraya"
+     camera-controls
+     camera-orbit="35deg 70deg auto"
+     camera-target="auto auto auto"
+     environment-image="neutral"
+     field-of-view="28deg"
+     id="focusedModel"
+     interaction-prompt="auto"
+     loading="lazy"
+     poster="/assets/images/villa-seraya-01.webp"
+     shadow-intensity="1.25"
+     shadow-softness="0.85"
+     tone-mapping="neutral"
+     touch-action="pan-y"
+    >
+     <div class="model-loading" slot="poster">
+      <span class="model-loading-cube">
+       <i aria-hidden="true" class="fa-solid fa-cube"></i>
+      </span>
+      <strong>Preparing the 3D space</strong>
+      <span>Loading Villa Seraya…</span>
+     </div>
+    </model-viewer>
+    <div aria-label="3D viewer controls" class="model-controls">
+     <div class="model-control-legend">
+      <span class="model-control-item">
+       <i aria-hidden="true" class="fa-solid fa-computer-mouse"></i>
+       <strong>Drag</strong>
+       Rotate
+      </span>
+      <span class="model-control-item">
+       <i aria-hidden="true" class="fa-solid fa-magnifying-glass-plus"></i>
+       <strong>Scroll / pinch</strong>
+       Zoom
+      </span>
+      <span class="model-control-item">
+       <i aria-hidden="true" class="fa-solid fa-hand"></i>
+       <strong>Two-finger drag</strong>
+       Pan
+      </span>
+     </div>
+     <button class="model-reset" id="resetModelView" type="button">
+      <i aria-hidden="true" class="fa-solid fa-rotate-left"></i>
+      Reset view
+     </button>
     </div>
    </div>
   </dialog>
