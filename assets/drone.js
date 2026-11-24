@@ -13,6 +13,8 @@
   let pitch = Math.PI / 2;
   let position = { x: 0, y: 0, z: 0 };
   let drag = null;
+  let fieldOfView = 65;
+  let previousFovLimits = [];
   const keys = new Set();
   const movement = new Set(['KeyW', 'KeyA', 'KeyS', 'KeyD', 'KeyQ', 'KeyE',
     'ShiftLeft', 'ShiftRight', 'ArrowLeft', 'ArrowRight', 'ArrowUp', 'ArrowDown']);
@@ -36,7 +38,7 @@
     const right = axis('KeyD', 'KeyA');
     const up = axis('KeyE', 'KeyQ');
     const length = Math.max(1, Math.hypot(forward, right, up));
-    const speed = (keys.has('ShiftLeft') || keys.has('ShiftRight') ? 5 : 1.6) * dt / length;
+    const speed = (keys.has('ShiftLeft') || keys.has('ShiftRight') ? 18 : 2.5) * dt / length;
     position.x += (-Math.sin(yaw) * Math.sin(pitch) * forward + Math.cos(yaw) * right) * speed;
     position.y += (-Math.cos(pitch) * forward + up) * speed;
     position.z += (-Math.cos(yaw) * Math.sin(pitch) * forward - Math.sin(yaw) * right) * speed;
@@ -54,6 +56,10 @@
     help.hidden = true;
     toggle.textContent = 'Drone mode';
     toggle.setAttribute('aria-pressed', 'false');
+    previousFovLimits.forEach(([name, value]) => {
+      if (value === null) viewer.removeAttribute(name);
+      else viewer.setAttribute(name, value);
+    });
     viewer.setAttribute('camera-controls', '');
   }
 
@@ -71,7 +77,11 @@
     active = true;
     keys.clear();
     viewer.removeAttribute('camera-controls');
-    viewer.setAttribute('field-of-view', '65deg');
+    previousFovLimits = ['min-field-of-view', 'max-field-of-view'].map((name) => [name, viewer.getAttribute(name)]);
+    viewer.setAttribute('min-field-of-view', '25deg');
+    viewer.setAttribute('max-field-of-view', '100deg');
+    fieldOfView = 65;
+    viewer.setAttribute('field-of-view', `${fieldOfView}deg`);
     document.querySelector('#roomInfo').hidden = true;
     dialog.classList.add('drone-active');
     help.hidden = false;
@@ -99,6 +109,16 @@
     if (movement.has(event.code)) { event.preventDefault(); keys.add(event.code); }
   });
   document.addEventListener('keyup', (event) => { keys.delete(event.code); });
+  viewer.addEventListener('wheel', (event) => {
+    if (!active) return;
+    event.preventDefault();
+    event.stopPropagation();
+    // Normalize wheel lines/pages as well as the pixel deltas from trackpads.
+    const units = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? viewer.clientHeight : 1;
+    fieldOfView = Math.max(25, Math.min(100, fieldOfView + event.deltaY * units * 0.04));
+    viewer.setAttribute('field-of-view', `${fieldOfView}deg`);
+    viewer.jumpCameraToGoal();
+  }, { passive: false });
   viewer.addEventListener('pointerdown', (event) => {
     if (!active || event.button !== 0) return;
     drag = { id: event.pointerId, x: event.clientX, y: event.clientY };
