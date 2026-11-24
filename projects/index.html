@@ -145,6 +145,7 @@
      id="focusedModel"
      interaction-prompt="auto"
      loading="lazy"
+     min-camera-orbit="auto 0deg 0.2m"
      poster="/assets/images/villa-seraya-01.webp"
      shadow-intensity="1.8"
      shadow-softness="0.4"
@@ -159,6 +160,14 @@
       <span>Loading Villa Seraya…</span>
      </div>
     </model-viewer>
+    <nav aria-label="Choose a room" class="room-picker" id="roomPicker"></nav>
+    <aside aria-labelledby="roomTitle" class="room-info" id="roomInfo" hidden>
+     <span class="room-eyebrow">Room tour</span>
+     <h3 id="roomTitle"></h3>
+     <p id="roomDescription"></p>
+     <img alt="" id="roomImage" loading="lazy"/>
+     <button class="model-reset" id="roomOverview" type="button">← Back to overview</button>
+    </aside>
     <div aria-label="3D viewer controls" class="model-controls">
      <div class="model-control-legend">
       <span class="model-control-item">

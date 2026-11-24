@@ -40,6 +40,12 @@ window.PORTFOLIO_PROJECTS = [
     "style": "Contemporary Mediterranean",
     "description": "A contemporary Mediterranean villa with tropical influences, defined by clean white architecture, blue arched openings, warm wood accents, and lush planting. The result is airy, serene, and resort-like.",
     "model": "/assets/models/villa-seraya-clean.glb?v=20261125",
+    "rooms": [
+      { "id": "living", "name": "Living area", "position": "3m 1.7m -6m", "target": "1.5m 1.2m -7.3m", "orbit": "90deg 80deg 2.2m", "description": "Explore the ground-floor living and dining space and its connection to the outdoor terrace.", "image": "/assets/images/villa-seraya-03.webp" },
+      { "id": "bedroom-one", "name": "Bedroom 1", "position": "3m 5.3m -3m", "target": "1.6m 4.1m -1.8m", "orbit": "90deg 75deg 2m", "description": "An upstairs bedroom framed by the villa’s signature blue arched glazing. Drag to look around the interior.", "image": "/assets/images/villa-seraya-04.webp" },
+      { "id": "bedroom-two", "name": "Bedroom 2", "position": "3m 5.3m -9m", "target": "1.6m 4.1m -10.3m", "orbit": "90deg 75deg 2m", "description": "Discover the second upstairs sleeping space and the architectural details around its arched openings.", "image": "/assets/images/villa-seraya-05.webp" },
+      { "id": "pool", "name": "Pool terrace", "position": "6.45m 0.3m -3.8m", "target": "6.45m 0.3m -3.8m", "orbit": "35deg 45deg 6m", "description": "The private pool sits beside the ground-floor terrace, linking the villa’s indoor and outdoor spaces.", "image": "/assets/images/villa-seraya-02.webp" }
+    ],
     "images": [
       "/assets/images/villa-seraya-01.webp",
       "/assets/images/villa-seraya-02.webp",

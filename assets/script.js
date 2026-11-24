@@ -301,6 +301,8 @@ function showDialogModel() {
     modelViewer.setAttribute("src", project.model);
   }
   modelViewer.setAttribute("alt", `Interactive 3D model of ${project.title}`);
+  buildRoomTour(project);
+  resetRoomTour();
   modelDialog.showModal();
 }
 
@@ -381,6 +383,58 @@ if (dialogLocation) {
 const modelDialog = select("#modelDialog");
 const focusedModel = select("#focusedModel");
 
+function resetRoomTour() {
+  if (!focusedModel) return;
+  select("#roomInfo").hidden = true;
+  modelDialog.classList.remove("room-selected");
+  selectAll("[data-room]").forEach((button) => button.setAttribute("aria-pressed", "false"));
+  focusedModel.setAttribute("camera-orbit", "35deg 70deg auto");
+  focusedModel.setAttribute("camera-target", "auto auto auto");
+  focusedModel.setAttribute("field-of-view", "28deg");
+}
+
+function buildRoomTour(project) {
+  const picker = select("#roomPicker");
+  picker.replaceChildren();
+  selectAll(".room-hotspot", focusedModel).forEach((element) => element.remove());
+  picker.hidden = !project.rooms?.length;
+  (project.rooms || []).forEach((room, index) => {
+    const visitRoom = () => {
+      focusedModel.setAttribute("camera-target", room.target);
+      focusedModel.setAttribute("camera-orbit", room.orbit);
+      focusedModel.setAttribute("field-of-view", "65deg");
+      modelDialog.classList.add("room-selected");
+      select("#roomTitle").textContent = room.name;
+      select("#roomDescription").textContent = room.description;
+      select("#roomImage").hidden = room.id === "pool";
+      select("#roomImage").src = room.image;
+      select("#roomImage").alt = `${project.title} — interior gallery reference`;
+      select("#roomInfo").hidden = false;
+      selectAll("[data-room]").forEach((button) => {
+        button.setAttribute("aria-pressed", String(button.dataset.room === room.id));
+      });
+    };
+    const button = document.createElement("button");
+    button.type = "button";
+    button.dataset.room = room.id;
+    button.setAttribute("aria-pressed", "false");
+    button.textContent = `${index + 1} · ${room.name}`;
+    button.addEventListener("click", visitRoom);
+    picker.append(button);
+
+    const hotspot = document.createElement("button");
+    hotspot.type = "button";
+    hotspot.className = "room-hotspot";
+    hotspot.slot = `hotspot-${room.id}`;
+    hotspot.dataset.position = room.position;
+    hotspot.dataset.normal = "1 0 0";
+    hotspot.setAttribute("aria-label", `Explore ${room.name}`);
+    hotspot.textContent = String(index + 1);
+    hotspot.addEventListener("click", visitRoom);
+    focusedModel.append(hotspot);
+  });
+}
+
 if (modelDialog && focusedModel) {
   select("#closeModelDialog").addEventListener("click", () => {
     modelDialog.close();
@@ -393,11 +447,9 @@ if (modelDialog && focusedModel) {
   });
 
   select("#resetModelView").addEventListener("click", () => {
-    focusedModel.setAttribute("camera-orbit", "35deg 70deg auto");
-    focusedModel.setAttribute("camera-target", "auto auto auto");
-    focusedModel.setAttribute("field-of-view", "28deg");
-    focusedModel.jumpCameraToGoal?.();
+    resetRoomTour();
   });
+  select("#roomOverview").addEventListener("click", resetRoomTour);
 }
 
 if (projectDialog) {

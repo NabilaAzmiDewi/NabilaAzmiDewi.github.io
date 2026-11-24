@@ -893,6 +893,58 @@ body.dialog-open {
   background: var(--accent-dark);
 }
 
+.room-picker {
+  position: absolute;
+  top: 140px;
+  left: 30px;
+  z-index: 4;
+  display: grid;
+  gap: 7px;
+}
+.room-picker button, .room-hotspot {
+  border: 1px solid rgba(165, 20, 26, .25);
+  color: #7b1015;
+  background: rgba(255, 253, 249, .95);
+  box-shadow: 0 5px 16px rgba(46,31,26,.15);
+  font: inherit;
+  font-size: .8rem;
+  font-weight: 800;
+  cursor: pointer;
+}
+.room-picker button { padding: 10px 14px; border-radius: 14px; text-align: left; }
+.room-picker button[aria-pressed="true"] { background: var(--accent); color: white; }
+.room-hotspot { width: 38px; height: 38px; border-radius: 50%; --min-hotspot-opacity: .6; }
+.room-hotspot:focus-visible, .room-picker button:focus-visible { outline: 3px solid #163e63; outline-offset: 3px; }
+.room-selected .room-hotspot { display: none; }
+.room-info {
+  position: absolute;
+  top: 110px;
+  right: 24px;
+  z-index: 4;
+  width: 260px;
+  max-height: calc(100% - 220px);
+  overflow-y: auto;
+  padding: 20px;
+  border-radius: 22px;
+  background: rgba(255,253,249,.95);
+  box-shadow: 0 15px 45px rgba(46,31,26,.2);
+  backdrop-filter: blur(16px);
+}
+.room-info[hidden], .room-picker[hidden], .room-info img[hidden] { display: none; }
+.room-eyebrow { color: var(--accent); text-transform: uppercase; font-size: .65rem; font-weight: 900; letter-spacing: .12em; }
+.room-info h3 { font-size: 1.6rem; margin: 7px 0 10px; }
+.room-info p { color: var(--muted); font-size: .85rem; line-height: 1.6; }
+.room-info img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: 12px; margin: 14px 0; }
+.room-info .model-reset { width: 100%; justify-content: center; padding: 0 8px; }
+@media(max-width:700px) {
+  .room-picker { top: 104px; left: 14px; right: 14px; display: flex; overflow-x: auto; padding-bottom: 6px; }
+  .room-picker button { white-space: nowrap; font-size: .7rem; padding: 9px 12px; }
+  .room-info { top: auto; bottom: 145px; right: 14px; left: 14px; width: auto; max-height: 31%; padding: 14px; }
+  .room-info img { display: none; }
+  .room-info h3 { font-size: 1.2rem; }
+  .room-info p { margin-bottom: 10px; }
+}
+
 .thumbs {
   display: flex;
   flex-shrink: 0;
