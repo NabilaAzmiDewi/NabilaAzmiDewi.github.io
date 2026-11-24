@@ -39,7 +39,7 @@ window.PORTFOLIO_PROJECTS = [
     "category": "Villa",
     "style": "Contemporary Mediterranean",
     "description": "A contemporary Mediterranean villa with tropical influences, defined by clean white architecture, blue arched openings, warm wood accents, and lush planting. The result is airy, serene, and resort-like.",
-    "model": "/assets/models/villa-seraya.glb?v=20261124",
+    "model": "/assets/models/villa-seraya-clean.glb?v=20261125",
     "images": [
       "/assets/images/villa-seraya-01.webp",
       "/assets/images/villa-seraya-02.webp",
