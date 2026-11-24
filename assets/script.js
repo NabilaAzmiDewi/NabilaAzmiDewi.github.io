@@ -53,11 +53,15 @@ let searchQuery = "";
 let visibleProjects = [...projects];
 let activeProjectIndex = 0;
 let activeImageIndex = 0;
+let activeDialogView = "image";
 
 function createProjectCard(project) {
   const placeholderClass = project.placeholder ? " placeholder-card" : "";
   const placeholderBadge = project.placeholder
     ? '<span class="placeholder-badge">Editable template</span>'
+    : "";
+  const modelBadge = project.model
+    ? '<span class="model-badge"><i class="fa-solid fa-cube" aria-hidden="true"></i> Interactive 3D</span>'
     : "";
 
   const locationMarkup = project.location
@@ -84,6 +88,7 @@ function createProjectCard(project) {
           src="${project.images[0]}"
           alt="${project.title} interior design"
         >
+        ${modelBadge}
       </div>
 
       <div class="project-body">
@@ -252,13 +257,25 @@ function setActiveDialogImage(index) {
     (index + project.images.length) % project.images.length;
 
   const mainImage = select("#dialogImage");
+  const mainContainer = select(".dialog-main", projectDialog);
+  const modelViewer = select("#dialogModel");
+  activeDialogView = "image";
+  mainContainer?.classList.remove("is-model-view");
+  mainImage.hidden = false;
+  if (modelViewer) modelViewer.hidden = true;
   mainImage.src = project.images[activeImageIndex];
   mainImage.alt =
     `${project.title} — project image ${activeImageIndex + 1} of ` +
     `${project.images.length}`;
 
   const thumbnailContainer = select("#dialogThumbs");
-  const thumbnails = selectAll(".thumb", thumbnailContainer);
+  const thumbnails = selectAll(".thumb-image", thumbnailContainer);
+
+  select(".thumb-model", thumbnailContainer)?.classList.remove("active");
+  select(".thumb-model", thumbnailContainer)?.setAttribute(
+    "aria-current",
+    "false",
+  );
 
   thumbnails.forEach((thumbnail, thumbnailIndex) => {
     const isActive = thumbnailIndex === activeImageIndex;
@@ -274,6 +291,34 @@ function setActiveDialogImage(index) {
       inline: "center",
     });
   }
+}
+
+function showDialogModel() {
+  const project = projects[activeProjectIndex];
+  const mainImage = select("#dialogImage");
+  const mainContainer = select(".dialog-main", projectDialog);
+  const modelViewer = select("#dialogModel");
+  const thumbnailContainer = select("#dialogThumbs");
+
+  if (!project?.model || !modelViewer) return;
+
+  activeDialogView = "model";
+  mainImage.hidden = true;
+  mainContainer?.classList.add("is-model-view");
+  modelViewer.hidden = false;
+
+  // Assign the large model only when requested, so normal gallery browsing
+  // stays quick and bandwidth-friendly.
+  if (modelViewer.getAttribute("src") !== project.model) {
+    modelViewer.setAttribute("src", project.model);
+  }
+  modelViewer.setAttribute("alt", `Interactive 3D model of ${project.title}`);
+
+  selectAll(".thumb", thumbnailContainer).forEach((thumbnail) => {
+    const isActive = thumbnail.classList.contains("thumb-model");
+    thumbnail.classList.toggle("active", isActive);
+    thumbnail.setAttribute("aria-current", isActive ? "true" : "false");
+  });
 }
 
 function fillProjectDialog(project) {
@@ -304,11 +349,11 @@ if (dialogLocation) {
 }
 
   const thumbnailContainer = select("#dialogThumbs");
-  thumbnailContainer.innerHTML = project.images
+  const imageThumbnails = project.images
     .map(
       (source, index) => `
         <button
-          class="thumb ${index === 0 ? "active" : ""}"
+          class="thumb thumb-image ${index === 0 ? "active" : ""}"
           data-image-index="${index}"
           type="button"
           aria-label="View image ${index + 1} of ${project.images.length}"
@@ -320,11 +365,37 @@ if (dialogLocation) {
     )
     .join("");
 
+  const modelThumbnail = project.model
+    ? `
+        <button
+          class="thumb thumb-model"
+          type="button"
+          aria-label="Explore ${project.title} as an interactive 3D model"
+          aria-current="false"
+        >
+          <i class="fa-solid fa-cube" aria-hidden="true"></i>
+          <span>3D</span>
+        </button>
+      `
+    : "";
+
+  thumbnailContainer.innerHTML = imageThumbnails + modelThumbnail;
+
   selectAll(".thumb", thumbnailContainer).forEach((thumbnail) => {
     thumbnail.addEventListener("click", () => {
-      setActiveDialogImage(Number(thumbnail.dataset.imageIndex));
+      if (thumbnail.classList.contains("thumb-model")) {
+        showDialogModel();
+      } else {
+        setActiveDialogImage(Number(thumbnail.dataset.imageIndex));
+      }
     });
   });
+
+  const modelViewer = select("#dialogModel");
+  if (modelViewer) {
+    modelViewer.hidden = true;
+    modelViewer.removeAttribute("src");
+  }
 
   activeImageIndex = 0;
   setActiveDialogImage(0);
@@ -360,6 +431,9 @@ if (projectDialog) {
       (event) => {
         const project = projects[activeProjectIndex];
         if (!projectDialog.open || !project) return;
+
+        // Preserve native orbit and zoom gestures in the interactive viewer.
+        if (activeDialogView === "model") return;
 
         // The gallery owns the wheel while the pointer is over the image area.
         // It must never pass through to the page behind the modal.

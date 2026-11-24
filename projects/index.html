@@ -87,6 +87,24 @@
     <div class="dialog-gallery">
      <div class="dialog-main">
       <img alt="" id="dialogImage"/>
+      <model-viewer
+       alt="Interactive 3D model of Villa Seraya"
+       camera-controls
+       environment-image="neutral"
+       id="dialogModel"
+       interaction-prompt="auto"
+       loading="lazy"
+       poster="/assets/images/villa-seraya-01.webp"
+       shadow-intensity="1"
+       tone-mapping="neutral"
+       touch-action="pan-y"
+       hidden
+      >
+       <div class="model-loading" slot="poster">
+        <strong>Interactive 3D</strong>
+        <span>Loading Villa Seraya…</span>
+       </div>
+      </model-viewer>
      </div>
      <div class="thumbs" id="dialogThumbs">
      </div>
@@ -170,6 +188,8 @@
    </div>
   </footer>
   <script src="/assets/projects.js">
+  </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.4.0/model-viewer.min.js" type="module">
   </script>
   <script src="/assets/script.js">
   </script>
